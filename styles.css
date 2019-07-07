@@ -1,0 +1,426 @@
+@import url('https://fonts.googleapis.com/css?family=Coiny|Roboto:300,500,700&display=swap');
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  height: 100vh;
+  width: 100%;
+  overflow: hidden;
+  background: rgb(0, 0, 0);
+  font-family: 'Roboto', sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.memory-game {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  perspective: 2500px;
+  background: transparent;
+} 
+
+.memory-card {
+  display: inline-block;
+  position: absolute;
+  transform: scale(1);
+  border-radius: 10px;
+  cursor: pointer;
+  transform-style: preserve-3d;
+  box-shadow: 0px 0px 8px 4px #474747a8;
+} 
+
+.front-face, .back-face {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  padding: 5px;
+  border-radius: 10px;
+  background: #1c7ccc;
+  backface-visibility: hidden;
+  object-fit: cover;
+  object-position: center;
+  background: rgb(204, 204, 204);
+} 
+
+.front-face {
+  transform: rotateY(180deg);
+}
+.back-face {
+  background:rgb(204, 204, 204);
+}
+
+div.hud {
+  position: fixed;
+  z-index: 2;
+  top:0px;
+  left: 20px;
+  opacity: 0;
+  pointer-events: 'none';
+}
+
+.hud > h1.logo {
+  font-size: 26px;
+  cursor: pointer;
+  pointer-events: 'none';
+
+}
+.hud > div.game-name {
+  color:#004743;
+  font-size: 16px;
+  font-family: 'Coiny', cursive;
+  text-transform: uppercase;
+  font-weight: bold;
+  text-align: center;
+  margin-top: 12px;
+  padding: 2px;
+  background: #00a69c;
+  pointer-events: 'none';
+}
+
+nav {
+  background: rgba(255, 255, 255, 0.85) 
+  repeating-linear-gradient(
+    45deg,
+    #ffffffc5,
+    #ffffffc5 5px,
+    #f7f7f7cc 5px,
+    #f7f7f7cc 10px
+  );
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: -100%;
+  padding: 80px 20px 20px 20px;
+  min-width: 200px;
+  max-width: 200px;
+  text-transform: capitalize;
+  z-index: 1;
+}
+
+nav h2 {
+ color: #00a69c;
+ margin-top: 20px;
+}
+nav ul {
+  list-style-type: none;
+}
+nav hr {
+  border-top: 1px solid rgb(184, 184, 184);
+  border-bottom: 1px solid rgb(255, 255, 255);
+  border-right: none;
+  border-left: none;
+}
+
+nav li.toggle {
+  margin:4px 0;
+  background-color:rgba(255, 255, 255, 0.6);
+  border:1px solid rgb(206, 206, 206);
+  overflow:auto;
+  width: 100%;
+  transition: all 0.3s ease;
+}
+
+nav li.toggle span:hover,
+nav input[type="radio"]:checked + span,
+nav input[type="checkbox"]:checked + span{
+  background-color:#00a69c;
+  color:white;
+}
+
+nav .toggle label span {
+  font-size: 14px;  
+  font-weight: 300;
+  text-align:left;
+  padding:6px 0px 6px 10px;
+  display:block;
+  cursor: pointer;
+}
+
+nav .toggle label input {
+  position:absolute;
+  top:-20px;
+}
+
+
+/* ============================================
+home
+============================================ */
+.home {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.logo {
+    font-family: 'Coiny', cursive;
+    font-size: 65px;
+    text-transform: uppercase;
+    color: #f2395a;
+    transform: skew(-5deg, -5deg) rotate(5deg);
+    transform-origin: center;
+    text-shadow: 1px 1px#d10e31,
+                 2px 2px#d10e31,
+                 3px 3px#d10e31,
+                 4px 4px#d10e31,
+                 5px 5px#d10e31,
+                 6px 6px#d10e31,
+                 7px 7px#d10e31,
+                 8px 8px#890920,
+                 9px 9px#890920,
+                 10px 10px#890920,
+                 11px 11px 15px
+               rgba(0, 0, 0, 0.5);
+    position: relative;
+    top:10px;
+}
+
+.home > h2 {
+    width:470px;
+    height:50px;
+    font-size: 20px;
+    text-transform: uppercase;
+    font-family: 'Coiny', cursive;
+    fill: #004743;
+    position: relative;
+}
+
+.home > h3 {
+  font-size: 26px;
+  color: #f2395a;
+  font-family: 'Coiny', cursive;
+  text-transform: uppercase;
+  margin: 110px 0 0 0;
+}
+
+.home .choose-game-card-container {
+  display: flex;
+}
+
+.home .choose-game-card {
+  display: flex;
+  flex-direction: column;
+  width: 150px;
+  height: 200px;
+  transform: scale(0.97);
+  transform-origin: center;
+  border-radius: 10px;
+  margin: 5px;
+  cursor: pointer;
+  overflow: hidden;
+  outline: none;
+  transition: transform 0.3s ease;
+}
+
+.home .choose-game-card:hover {
+  transform: scale(1.05);
+}
+.home .choose-game-card:active {
+  transform: scale(0.98);
+}
+
+/* logo image */
+.home .choose-game-card > img{
+  object-fit: cover;
+  object-position: center;
+  width: 100%;
+  max-height: 150px;
+}
+
+/* game name text in buttons  */
+.home .choose-game-card > div{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex: 1;
+  width: 100%;
+  text-align: center;
+  margin: auto;
+  color: rgb(100, 100, 100);
+  background: rgba(233, 233, 233, 0.884);
+  font-weight: bold;
+  
+}
+
+i.openNavArrow {
+  margin-top: 10px;
+  color: white;
+  font-size: 16px;
+  opacity: 0;
+  pointer-events: 'none';
+}
+
+i.fa-fire-alt {
+  color: #f2395a;
+}
+
+
+#bg-img {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  transform: scale(1);
+  opacity: 0;
+  background-position: center;
+  background-repeat: none;
+  background-size: cover;
+  background-color: transparent;
+  z-index: -1;
+}
+
+
+/* ============================================
+end modal
+============================================ */
+
+.end-modal {
+  position: relative;
+  padding: 25px 80px;
+  justify-self: center;
+  align-self: center;
+  background: white;
+  z-index: 1;
+  /* clip-path: polygon(0 0, 100% 0, 100% 85%, 0% 100%); */
+  border-radius: 10px;
+  /* text-align: center; */
+  box-shadow: 0px 0px 8px 4px #474747a8;
+  text-align: center;
+  background-image: radial-gradient(white, rgb(224, 224, 224));
+  opacity: 0;
+}
+
+.end-modal h1{
+  font-family: 'Coiny', cursive;
+  color: #f2395a;
+  text-align: center;
+  font-size: 50px;
+}
+.end-modal h1 i{
+  font-size: 35px;
+}
+
+.end-modal .trophy-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.trophy-container div.trophyLayers {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  height: 100px;
+  display: none;
+}
+.trophy-container img.trophy,
+.trophy-container img.scatter,
+.trophy-container img.mix,
+.trophy-container img.infinite {
+  position: absolute;
+  opacity: 0;
+}
+
+
+.exit-modal-btn {
+  font-size: 30px;
+  position: absolute;
+  left: 10px;
+  top: 10px;
+  color: gray;
+  cursor: pointer;
+  transition: color 0.5s ease;
+}
+
+.exit-modal-btn:hover {
+  color: #f2395a;
+}
+
+
+.play-btn {
+  position: relative;
+  z-index: 1;
+  display: inline-block;
+  padding: 8px 30px;
+  font-size: 1.3rem;
+  font-weight: bold;
+  background-color: #f2395a;
+  background-size: 100%;
+  background-image: -webkit-linear-gradient(45deg,
+                          rgba(255, 255, 255, 0.15) 25%, rgba(0, 0, 0, 0) 25%,
+                          rgba(0, 0, 0, 0) 50%,
+                          rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, rgba(0, 0, 0, 0) 75%,
+                          rgba(0, 0, 0, 0));
+  background-image: linear-gradient(45deg,
+                          rgba(255, 255, 255, 0.15) 25%, rgba(0, 0, 0, 0) 25%,
+                          rgba(0, 0, 0, 0) 50%,
+                          rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, rgba(0, 0, 0, 0) 75%,
+                          rgba(0, 0, 0, 0));
+  background-size: 20px 20px, 100% 100%;
+  border: 1px solid #f02146;
+  border-bottom-width: 3px;
+  color: rgb(255, 255, 255);
+  outline: none;
+  cursor: pointer;
+  border-radius: 5px;
+  margin-top: 35px;
+  -webkit-transition: all 0.3s ease;
+  transition: all 0.3s ease;
+}
+
+.play-btn:hover {
+  background-size: 40px 40px;
+}
+
+
+
+/* ============================================
+about me
+============================================ */
+
+.about-me {
+  margin-top: auto;
+  font-size: 14px;
+  color: rgb(100, 100, 100);
+  margin-top: 60px;
+} 
+.about-me p{
+ margin: 10px 0 10px 0;
+} 
+.about-me a{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  text-decoration: none;
+  width: 40px;
+  height: 40px;
+}
+
+.about-me .emails{
+  margin-top: 10px;
+  display: flex;
+}
+
+a.facebook {
+  background-color: #3B5998;
+}
+a.linked-in {
+  background: #007bb5;
+}
+.about-me a:hover {
+  opacity: 0.7;
+}
+
+.fa-heart {
+  color: #f2395a;
+}

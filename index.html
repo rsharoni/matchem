@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.9.0/css/all.min.css">
+  <title>Memory Game</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+  <div class="hud">
+    <h1 class="logo">Match'Em</h1>
+    <div class="game-name">Avengers</div>
+    <i class="fas fa-chevron-right openNavArrow"></i>
+  </div>
+
+  <div id="bg-img"></div>
+
+  <div class="home">
+    <h1 class="logo">Match'em</h1>
+
+    <h2>
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 347 87">
+        <defs>
+          <style>
+            .cls-1 {
+              fill: #00968d
+            }
+
+            .cls-3 {
+              fill: #00847d
+            }
+          </style>
+        </defs>
+        <g id="Layer_2" data-name="Layer 2">
+          <g id="Layer_5" data-name="Layer 5">
+            <path class="cls-1" d="M347 25l-21 31 21 31h-63V25h63zM0 25l21 31L0 87h63V25H0z" />
+            <path fill="#00a69c" d="M37 0h273v62H37z" />
+            <path class="cls-3" d="M37 62l26 25V62H37zM310 62l-26 25V62h26z" />
+            <text x="51" y="40"> Crazy memory game</text>
+          </g>
+        </g>
+      </svg>
+    </h2>
+
+    <h3>Choose a game and have fun </h3>
+    <div class="choose-game-card-container">
+      <div class="choose-game-card" data-card="avengers">
+        <img src="./img/avengers/logo.jpg" alt="play avengers" draggable="false" />
+        <div>Avengers</div>
+      </div>
+      <div class="choose-game-card" data-card="star wars">
+        <img src="./img/star_wars/logo.jpg" alt="play avengers" draggable="false" />
+        <div>Star Wars</div>
+      </div>
+      <div class="choose-game-card" data-card="jurassic park">
+        <img src="./img/jurassic_park/logo.jpg" alt="play avengers" draggable="false" />
+        <div>Jurassic Park</div>
+      </div>
+    </div>
+  </div>
+
+  <nav>
+    <div>
+      <h2>game</h2>
+      <hr>
+      <ul>
+        <li class="toggle">
+          <label>
+            <input type="radio" name="name" value="avengers" />
+            <span class="activeHover">Avengers</span>
+          </label>
+        </li>
+        <li class="toggle">
+          <label>
+            <input type="radio" name="name" value="star wars" />
+            <span class="activeHover">Star Wars</span>
+          </label>
+        </li>
+        <li class="toggle">
+          <label>
+            <input type="radio" name="name" value="jurassic park" />
+            <span>Jurassic Park</span>
+          </label>
+        </li>
+      </ul>
+    </div>
+    <div>
+      <h2>Level</h2>
+      <hr>
+      <ul>
+        <li class="toggle">
+          <label>
+            <input type="radio" name="level" value="easy" />
+            <span>Easy</span>
+          </label>
+        </li>
+        <li class="toggle">
+          <label>
+            <input type="radio" name="level" value="medium" />
+            <span>Medium</span>
+          </label>
+        </li>
+        <li class="toggle">
+          <label>
+            <input type="radio" name="level" value="hard" />
+            <span>Hard</span>
+          </label>
+        </li>
+      </ul>
+    </div>
+    <div>
+      <h2>Go Crazy <i class="fas fa-fire-alt"></i></h2>
+      <hr>
+      <ul>
+        <li class="toggle">
+          <label>
+            <input type="checkbox" id="scatter" class="advancedBtn" />
+            <span>Scatter</span>
+          </label></li>
+        <li class="toggle">
+          <label>
+            <input type="checkbox" id="mix" class="advancedBtn" />
+            <span>Mix</span>
+          </label></li>
+        <li class="toggle">
+          <label>
+            <input type="checkbox" id="infinite" class="advancedBtn" />
+            <span>Infinite</span>
+          </label>
+        </li>
+      </ul>
+    </div>
+    <div class="about-me">
+      <h2>ROY SHARONI</h2>
+      Web Developer <i class="fas fa-heart"></i>
+      <div class="emails">
+        <a href="http://www.linkedin.com/in/roy-sharoni-a48b791" target="_blank" class="linked-in"><i
+            class="fab fa-linkedin-in"></i></a>
+        <a href="http://www.facebook.com/roy.sharoni" target="_blank" class="facebook"><i
+            class="fab fa-facebook-f"></i></a>
+      </div>
+    </div>
+  </nav>
+
+  <section class="memory-game"></section>
+
+  <div class="end-modal">
+    <div class="exit-modal-btn"><i class="far fa-times-circle"></i></div>
+    <h1>You Rock <i class="fas fa-heart"></i></h1>
+    <div class="trophy-container">
+      <img src="" class="stars">
+      <div class="trophyLayers">
+        <img src="./img/ui/trophy.png" class="trophy">
+        <img src="./img/ui/scatter.png" class="scatter">
+        <img src="./img/ui/mix.png" class="mix">
+        <img src="./img/ui/infinite.png" class="infinite">
+      </div>
+    </div>
+    <div class="play-btn">Play Again</div>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/2.1.3/TweenMax.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/2.1.3/TimelineMax.min.js"></script>
+  <script src="index.js"></script>
+</body>
+
+</html>
