@@ -52,9 +52,9 @@ let matchedCards = [];
 const body = document.querySelector("body");
 const navMenu = document.querySelector("nav");
 const hud = document.querySelector("div.hud");
-const hudLogo = document.querySelector("div.hud > h1");
-const hudGameName = document.querySelector("div.hud > .game-name");
-const openNavArrow = document.querySelector("div.hud > .openNavArrow");
+const hudLogo = hud.querySelector("h1");
+const hudGameName = hud.querySelector(".game-name");
+const optionsBtn = hud.querySelector(".options-btn");
 const home = document.querySelector(".home");
 const gameContainer = document.querySelector("section.memory-game");
 const bgImg = document.querySelector("#bg-img");
@@ -63,6 +63,8 @@ let chooseGameBtns = document.querySelectorAll('.home .choose-game-card');
 let navNameBtns = document.querySelectorAll('nav input[name=name]');
 let navLevelBtns = document.querySelectorAll('nav input[name=level]');
 let advancedBtns = document.querySelectorAll('nav .advancedBtn');
+let tooltipsBtns = document.querySelectorAll('nav .tooltip');
+let tooltipText = document.querySelector('.tooltiptext');
 
 let endModal = document.querySelector('.end-modal');
 let exitModalBtn = document.querySelector('.exit-modal-btn');
@@ -141,6 +143,38 @@ const init = () => {
         btn.addEventListener('click', () => chooseAdvancedOptions(btn.id, btn.checked));
     });
 
+    tooltipsBtns.forEach(btn => {
+        btn.addEventListener("mouseenter", (e) => {
+            let point = {
+                top: e.target.getBoundingClientRect().top + e.target.getBoundingClientRect().height /2,
+                right: e.target.getBoundingClientRect().right,
+            };
+
+            let id = e.target.querySelector('input[type=checkbox]').getAttribute('id');
+
+            let msg = '';
+            switch (id) {
+                case 'scatter':
+                    msg = 'the cards will spread randomly on the screen';
+                    break;
+                case 'mix':
+                    msg = 'the cards will shuffle during the game';
+                    break;
+                case 'infinite':
+                    msg = 'cards will return to the game every few seconds';
+                    break;
+                default:
+                    break;
+            }
+            console.log('msg', msg);
+            showLeftTooltip(point, msg);
+        });
+
+        btn.addEventListener("mouseleave", () => {
+            hideLeftTooltip();
+        });
+    });
+
     document.addEventListener('mousemove', (e) => {
         if (gameConfig.name === 'home') return;
         if (e.x < 30) {
@@ -154,6 +188,11 @@ const init = () => {
         showArrow();
     });
 
+
+    optionsBtn.addEventListener('mouseenter', (e) => {
+        if (menuOpen) return;
+        openNavMenu();
+    });
 
     // =====================================
     // end modal
@@ -358,7 +397,7 @@ function cardsRandomEnter(cards) {
                 scale: 1,
                 cycle: {
                     left: () => getRandomIntInclusive(100, document.body.clientWidth - 150),
-                    top: () => getRandomIntInclusive(100, document.body.clientHeight - 150),
+                    top: () => getRandomIntInclusive(50, document.body.clientHeight - 150),
                     rotation: () => Math.random() * 90,
                 },
                 ease: Back.easeOut.config(1.7)
@@ -770,8 +809,8 @@ function hudFadeOut(delay = 0) {
 
 function showArrow() {
     // show arrow
-    if (openNavArrow.style.opacity === '1') return;
-    TweenMax.to(openNavArrow, 0.3,
+    if (optionsBtn.style.opacity === '1') return;
+    TweenMax.to(optionsBtn, 0.3,
         {
             autoAlpha: 1,
             ease: Power4.easeOut,
@@ -780,7 +819,7 @@ function showArrow() {
 }
 function hideArrow() {
     // hide arrow
-    TweenMax.to(openNavArrow, 0.3,
+    TweenMax.to(optionsBtn, 0.3,
         {
             autoAlpha: 0,
             ease: Power4.easeOut,
@@ -857,4 +896,25 @@ function getRandomIntInclusive(min, max) {
     max = Math.floor(max);
     //The maximum is inclusive and the minimum is inclusive
     return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
+
+function showLeftTooltip(point, msg) {
+    tooltipText.textContent = msg;
+
+    TweenMax.fromTo(tooltipText, 0.5,
+        {
+            autoAlpha: 0,
+            right: point.right,
+            top: point.top - tooltipText.getBoundingClientRect().height /2
+        },
+        {
+            autoAlpha: 1
+        }
+    )
+}
+function hideLeftTooltip() {
+    TweenMax.to(tooltipText, 0.3, {
+        autoAlpha: 0
+    });
 }
