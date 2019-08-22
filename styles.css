@@ -77,8 +77,8 @@ div.hud {
   text-transform: uppercase;
   font-weight: bold;
   text-align: center;
-  margin-top: 12px;
-  padding: 2px;
+  margin-top: 15px;
+  padding-top: 3px;
   background: #00a69c;
   pointer-events: 'none';
 }
@@ -159,6 +159,8 @@ home
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  visibility: hidden;
+  opacity: 0;
 }
 
 .logo {
@@ -251,12 +253,23 @@ home
   
 }
 
-i.openNavArrow {
-  margin-top: 10px;
+.options-btn {
+  margin-top: 4px;
   color: white;
-  font-size: 16px;
+  font-size: 17px;
   opacity: 0;
   pointer-events: 'none';
+  text-transform: uppercase;
+  color: #f2395a;
+  font-family: 'Coiny', cursive;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  pointer-events: auto;
+}
+
+.options-btn:hover  {
+  cursor: pointer;
 }
 
 i.fa-fire-alt {
@@ -424,3 +437,48 @@ a.linked-in {
 .fa-heart {
   color: #f2395a;
 }
+
+
+
+
+
+/* ============================================
+  Tool tip
+============================================ */
+/* .tooltip {
+  position: relative;
+
+} */
+
+.tooltiptext {
+  position: absolute;
+  visibility: hidden;
+  width: 150px;
+  background-color: white;
+  color: rgb(0, 0, 0);
+  border-radius: 6px;
+  padding: 10px 20px;
+  z-index: 1;
+  top: -5px;
+  left: 110%;
+  text-transform: capitalize;
+  font-size: 14px;
+  font-weight: 300;
+  text-align: left;
+  line-height: 20px;
+}
+
+.tooltiptext::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  right: 100%;
+  margin-top: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: transparent white transparent transparent;
+}
+/* .tooltip:hover + .tooltiptext {
+  visibility: visible;
+} */
+
