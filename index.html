@@ -4,7 +4,8 @@
 <head>
   <meta charset="UTF-8">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.9.0/css/all.min.css">
-  <title>Memory Game</title>
+  <link rel="shortcut icon" type="image/png" href="img/ui/favicon.png" />
+  <title>Match'em - Crazy Memory Game</title>
   <link rel="stylesheet" href="styles.css">
 </head>
 
@@ -12,7 +13,8 @@
   <div class="hud">
     <h1 class="logo">Match'Em</h1>
     <div class="game-name">Avengers</div>
-    <i class="fas fa-chevron-right openNavArrow"></i>
+    <div class="options-btn"><i class="fas fa-chevron-right"></i><span>Options</span><i class="fas fa-chevron-left"></i>
+    </div>
   </div>
 
   <div id="bg-img"></div>
@@ -114,17 +116,19 @@
       <h2>Go Crazy <i class="fas fa-fire-alt"></i></h2>
       <hr>
       <ul>
-        <li class="toggle">
+        <li class="toggle tooltip">
           <label>
             <input type="checkbox" id="scatter" class="advancedBtn" />
             <span>Scatter</span>
-          </label></li>
-        <li class="toggle">
+          </label>
+        </li>
+        <li class="toggle tooltip">
           <label>
             <input type="checkbox" id="mix" class="advancedBtn" />
             <span>Mix</span>
-          </label></li>
-        <li class="toggle">
+          </label>
+        </li>
+        <li class="toggle tooltip">
           <label>
             <input type="checkbox" id="infinite" class="advancedBtn" />
             <span>Infinite</span>
@@ -132,6 +136,10 @@
         </li>
       </ul>
     </div>
+
+    <span class="tooltiptext">Tooltip text</span>
+
+
     <div class="about-me">
       <h2>ROY SHARONI</h2>
       Web Developer <i class="fas fa-heart"></i>
